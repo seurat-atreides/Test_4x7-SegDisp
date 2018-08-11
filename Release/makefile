@@ -73,7 +73,7 @@ sizedummy: Test4x7-SegDisp.elf
 
 avrdudedummy: Test4x7-SegDisp.elf
 	@echo 'Invoking: AVRDude'
-	/usr/bin/avrdude -pt2313a -cusbasp -b115200 -Uflash:w:Test4x7-SegDisp.hex:a -Ueeprom:w:Test4x7-SegDisp.eep:a
+	/usr/bin/avrdude -pt2313a -cusbasp -Uflash:w:Test4x7-SegDisp.hex:a -Ueeprom:w:Test4x7-SegDisp.eep:a
 	@echo 'Finished building: $@'
 	@echo ' '
 
