@@ -187,7 +187,10 @@ uint8_t *ioptr = output, pause = _DELAY;
 
 ISR(TIMER0_OVF_vect) {
 
-	if (pulse) { pulse--; return; } // return if stays not zero (anode pulse width)
+	if (pulse) {
+		pulse--;
+		return;
+	} // return if stays not zero (anode pulse width)
 
 	// clear used bits in the Data Direction Registers and the Port Registers
 	DDRA  &= ~(USED_D >> 6);
@@ -197,7 +200,11 @@ ISR(TIMER0_OVF_vect) {
 	PORTB &= ~USED_B;
 	PORTD &= ~(USED_D & 0x3f);
 
-	if (pause) { pause--; return; } // return if 64 interrupt cycle (0x40) not over
+	if (pause) {
+		pause--;
+		return;
+	} // return if 64 interrupt cycle (0x40) not over
+
 	if (busy) return; //if busy loading from EEPROM then return
 
 	// load next digit
@@ -263,7 +270,7 @@ int main(void) {
 
 		for (bcd=0;bcd<29;bcd++) {
 			for (digit=0;digit<4;digit++) seg2port(bcd + digit, digit);
-			_delay_ms(500);
+			_delay_ms(1000);
 		}
 	}//while
 }
